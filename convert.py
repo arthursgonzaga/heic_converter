@@ -1,5 +1,4 @@
 import os
-import pyheif
 from PIL import Image
 import pillow_heif
 

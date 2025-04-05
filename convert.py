@@ -63,7 +63,7 @@ def main():
     """
     try:
         folder_path = input("Digite o caminho da pasta com imagens HEIC: ")
-        output_path = input("Digite o formato de saída (jpeg ou png): ")
+        output_format = input("Digite o formato de saída (jpeg ou png): ")
 
         # Converte todas as imagens na pasta
         convert_all_in_folder(folder_path, output_format)

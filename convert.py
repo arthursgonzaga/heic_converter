@@ -34,16 +34,39 @@ def convert_heic_to(image_path, output_format="jpeg"):
     return output_path
 
 
+def convert_all_in_folder(folder_path, output_format="jpeg"):
+    """
+    Converte todas as imagens .heic em uma pasta para o formato especificado.
+
+    Parâmetros:
+    - folder_path (str): Caminho da pasta contendo as imagens .heic.
+    - output_format (str): Formato de saída ('jpeg' ou 'png').
+    """
+    # Verifica se a pasta existe
+    if not os.path.isdir(folder_path):
+        raise FileNotFoundError(f"A pasta '{folder_path}' não foi encontrada.")
+
+    # Lista todos os arquivos na pasta
+    for file_name in os.listdir(folder_path):
+        if file_name.lower().endswith(".heic"):
+            file_path = os.path.join(folder_path, file_name)
+            try:
+                print(f"Convertendo: {file_path}")
+                convert_heic_to(file_path, output_format)
+            except Exception as e:
+                print(f"Erro ao converter '{file_path}': {e}")
+
+
 def main():
     """
     Função principal para executar a conversão de imagens HEIC.
     """
     try:
-        file_path = input("Digite o caminho do arquivo HEIC: ").strip()
-        output_format = input("Digite o formato de saída (jpeg/png): ").strip().lower()
+        folder_path = input("Digite o caminho da pasta com imagens HEIC: ")
+        output_path = input("Digite o formato de saída (jpeg ou png): ")
 
-        # Executa a conversão
-        convert_heic_to(file_path, output_format)
+        # Converte todas as imagens na pasta
+        convert_all_in_folder(folder_path, output_format)
     except Exception as e:
         print(f"Erro: {e}")
 
